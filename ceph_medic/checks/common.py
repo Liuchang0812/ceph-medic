@@ -70,3 +70,11 @@ def check_cluster_fsid(host, data):
 
     if mismatched_hosts:
         return code, msg % (current_fsid, ','.join(mismatched_hosts))
+
+
+def check_mons_count(host, data):
+    code = 'WCOM6'
+    msg = 'the number of MONs(%d) is less than 3'
+    
+    if 'mons' in metadata and len(metadata['mons']) < 3:
+      return code, msg % len(metadata['mons'])
